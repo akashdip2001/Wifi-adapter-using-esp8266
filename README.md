@@ -62,3 +62,38 @@ void loop() {
 
 - Replace "AkashdipMahapatra_YouTube" and "YourWiFiPassword" with your actual WiFi network credentials. This code will connect the ESP8266 to the specified WiFi network.
 - Remember that you can use the ESP8266 for various IoT projects as a WiFi adapter to connect to the internet or communicate with other devices on your network. The specific application will dictate the code and functionality you need to implement.
+
+
+
+# Monitor mode
+
+The ESP8266 is not well-suited for monitor mode (promiscuous mode) as it's primarily designed for connecting to WiFi networks and lacks dedicated monitor mode capabilities found in some other Wi-Fi chipsets. However, you can perform some basic packet sniffing using ESP8266 in a limited way.
+
+Here's a simple example of how to capture and display WiFi packets using an ESP8266 in "promiscuous mode":
+
+```
+#include <ESP8266WiFi.h>
+
+void promiscuousCallback(uint8_t *buf, uint16_t len) {
+  // Process and display the captured packet
+  Serial.write(buf, len);
+}
+
+void setup() {
+  Serial.begin(115200);
+  wifi_set_opmode(STATION_MODE);
+  wifi_set_channel(1);  // Set the channel you want to monitor
+
+  wifi_promiscuous_enable(0);
+  wifi_set_promiscuous_rx_cb(promiscuousCallback);
+  wifi_promiscuous_enable(1);
+}
+
+void loop() {
+  // Your code here
+}
+```
+
+- Please note that the ESP8266's ability to capture and process packets in promiscuous mode is quite limited compared to dedicated Wi-Fi monitoring devices. ESP8266's main design focus is on connecting to Wi-Fi networks.
+- Additionally, enabling promiscuous mode and capturing Wi-Fi packets in this way may raise legal and ethical concerns. Be sure to comply with all applicable laws and regulations in your region when using such functionality.
+- If you require more advanced packet capture and analysis, you might want to consider using dedicated Wi-Fi monitoring hardware or other platforms designed for such tasks.
