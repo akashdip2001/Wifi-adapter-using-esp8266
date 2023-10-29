@@ -39,7 +39,7 @@ To create a WiFi adapter using an ESP8266 microcontroller, you can follow these 
 
 # Here's the code to get you started with configuring the ESP8266 as a WiFi adapter:
 
-'''
+```
 #include <ESP8266WiFi.h>
 
 const char* ssid = "AkashdipMahapatra_YouTube";
@@ -58,7 +58,7 @@ void setup() {
 void loop() {
   // Your code here
 }
-'''
+```
 
 - Replace "AkashdipMahapatra_YouTube" and "YourWiFiPassword" with your actual WiFi network credentials. This code will connect the ESP8266 to the specified WiFi network.
 - Remember that you can use the ESP8266 for various IoT projects as a WiFi adapter to connect to the internet or communicate with other devices on your network. The specific application will dictate the code and functionality you need to implement.
